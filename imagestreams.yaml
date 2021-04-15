@@ -1,0 +1,29 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: ocazcli
+  namespace: sealed-secrets
+spec:
+  lookupPolicy:
+    local: false
+status:
+  dockerImageRepository: 'image-registry.openshift-image-registry.svc:5000/sealed-secrets/ocazcli'
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: ubi8
+  namespace: sealed-secrets
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      annotations:
+        openshift.io/imported-from: 'registry.redhat.io/ubi8:latest'
+      from:
+        kind: DockerImage
+        name: 'registry.redhat.io/ubi8:latest'
+      importPolicy: {}
+      referencePolicy:
+        type: Source

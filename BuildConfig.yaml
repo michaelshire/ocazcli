@@ -2,13 +2,12 @@ kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
   name: ocaz-cli
-  namespace: 1temp
+  namespace: sealed-secrets
 spec:
-  nodeSelector: null
   output:
     to:
       kind: ImageStreamTag
-      name: 'ocazcli:latest'
+      name: "ocazcli:latest"
   resources: {}
   successfulBuildsHistoryLimit: 5
   failedBuildsHistoryLimit: 5
@@ -17,12 +16,11 @@ spec:
     dockerStrategy:
       from:
         kind: ImageStreamTag
-        name: 'ubi8:latest'
+        name: "ubi8:latest"
   postCommit: {}
   source:
     type: Git
     git:
-      uri: 'https://github.com/michaelshire/ocazcli.git'
+      uri: "https://github.com/michaelshire/ocazcli.git"
     contextDir: ocazcli
-  triggers: {}
   runPolicy: Serial

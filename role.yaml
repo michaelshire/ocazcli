@@ -1,0 +1,12 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sealed-secret-reader
+  namespace: sealed-secrets
+  labels:
+rules:
+  - verbs: ["get", "list"]
+    apiGroups:
+      - ''
+    resources:
+      - secrets
